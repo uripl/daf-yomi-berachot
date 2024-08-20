@@ -48,59 +48,15 @@
         .daf-button:hover {
             background-color: #2980b9;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 400px;
-            text-align: center;
-        }
-        .close {
-            color: #aaa;
-            float: left;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
     <header>
-        <img src="/api/placeholder/800/400" alt="תמונת כותרת">
+        <img src="https://raw.githubusercontent.com/[YOUR_USERNAME]/[YOUR_REPO]/main/header-image.jpg" alt="תמונת כותרת">
         <h1>לימוד משפחתי לע"נ סבא הלל - מסכת ברכות</h1>
     </header>
 
     <div class="daf-list" id="dafList"></div>
-
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modalDafTitle"></h2>
-            <p>
-                <a id="listenOnline" href="#" target="_blank">האזנה אונליין</a>
-                |
-                <a id="downloadLink" href="#" download>הורדה</a>
-            </p>
-        </div>
-    </div>
 
     <script>
     var mp3Files = {
@@ -114,15 +70,60 @@
         "מג": "https://drive.google.com/uc?export=download&id=18yf4i-w83kfyuNdzL7i4Y_qy2pOazOhg",
         "ס עב": "https://drive.google.com/uc?export=download&id=19ZdZPKK-4fvZJbMQTL66ZVuyFq4Dj7Qb",
         "כ": "https://drive.google.com/uc?export=download&id=1BClgguuT_oiczAEK16Hnt7bMuJjmyNGV",
-        // ... הוסף את שאר הקישורים כאן
+        "לו": "https://drive.google.com/uc?export=download&id=1Ctj6c7-_xnVbNFQqgXeBnCC3uaQZyioI",
+        "מא בעין איה": "https://drive.google.com/uc?export=download&id=1DZs9WSn2hjk6mZJJUutV_La73dxepN2U",
+        "ז ח": "https://drive.google.com/uc?export=download&id=1DxGBV4uPsEAbxuYOQAyyspuyO2h6yhHm",
+        "לג": "https://drive.google.com/uc?export=download&id=1E6DaI1K5dWQ6xBRJYm-kuopizPbJQ5lV",
+        "מד": "https://drive.google.com/uc?export=download&id=1GDF_n2xvPJnisxGII2rwTDOKSAsntWpe",
+        "כט ל": "https://drive.google.com/uc?export=download&id=1HyFK6cMo7hpoOMYqPq01ZNuKm1-bC_tE",
+        "כז עב לפי עין איה": "https://drive.google.com/uc?export=download&id=1J_-0lagcn0tPK0EDaitZvu5ch8FMjSRW",
+        "לה": "https://drive.google.com/uc?export=download&id=1Jh6nDyShjJINenPzGe2HR8ANejNHl5Jn",
+        "סג סד": "https://drive.google.com/uc?export=download&id=1Lzv2eHFwBFEutMYllvZuL6A_vV71zUvI",
+        "ט עב ו י עא  סיפור על סבתא אלישבע": "https://drive.google.com/uc?export=download&id=1Mtt4v4IUA8wEpOLDm84hI6ETjyKnkOqZ",
+        "מח": "https://drive.google.com/uc?export=download&id=1NnPq4f0EQABpDMzBp6FGettlDunhUHxm",
+        "י עב ו יא": "https://drive.google.com/uc?export=download&id=1OvSW48nPJA-JKPAeo41QO0GWN2Z4QMUt",
+        "יח": "https://drive.google.com/uc?export=download&id=1R39ba8apYJO5aamRDf9gO37s79yK2fIS",
+        "כד כה": "https://drive.google.com/uc?export=download&id=1S7MypbVfA85UE_7V-cUPdci9bm6_Xrze",
+        "יג עב ו יד": "https://drive.google.com/uc?export=download&id=1TU80rk9BCwuWyU3uizM9b4nYw7xQqvMq",
+        "לד": "https://drive.google.com/uc?export=download&id=1UZyyd5v57NdLYr-aOAy94VRqB_P3Hrae",
+        "ל עב לא": "https://drive.google.com/uc?export=download&id=1VUf0BF9D-uq4dtaboWC8gQ1wuskSYfPu",
+        "טז יז": "https://drive.google.com/uc?export=download&id=1W7Oj5c-24rGCPLGSmidOogI0X2LXmniT",
+        "ד": "https://drive.google.com/uc?export=download&id=1WMo3kAJ331QPb2Otl9PsfnwbC4bRbtzM",
+        "סא סב": "https://drive.google.com/uc?export=download&id=1XkLqjgXekwIXBtS3NYwTanM7U-jw2Jyk",
+        "לח": "https://drive.google.com/uc?export=download&id=1YZt85BuiqsXN1QRrK3LTToOeHQF9WeId",
+        "מה": "https://drive.google.com/uc?export=download&id=1YnYcurXUYJnH4JGOGuDPwuLMCJ5bCiat",
+        "מ עב מא": "https://drive.google.com/uc?export=download&id=1Z_WThtGS9hurcKLnVROzaybnrgBvzuWC",
+        "כא כב": "https://drive.google.com/uc?export=download&id=1ZhpSLifp6-OXF4EtBdDyiDR_JsRABSlB",
+        "נ": "https://drive.google.com/uc?export=download&id=1a_r9TmImDaJLmeRwWSXAAH9YpibXNp9J",
+        "לב": "https://drive.google.com/uc?export=download&id=1b_MO6hlZzJrZ0vDAAKiYA8pd5FX2lxmw",
+        "כח עב": "https://drive.google.com/uc?export=download&id=1d33U07UVKPv5J5EVYTEW8kfuE0-RJwLx",
+        "נד נה": "https://drive.google.com/uc?export=download&id=1dG1jOgHoufj7IIX7p9Wl4hnhSvzulpev",
+        "כא עא": "https://drive.google.com/uc?export=download&id=1dP3rI24i2y2zSogFJreLnie98r25ebTr",
+        "כו כז": "https://drive.google.com/uc?export=download&id=1fbtxY_GrkucwBjoB1ftZ_UCrj9nbwTDJ",
+        "יד": "https://drive.google.com/uc?export=download&id=1gu2CW-wavtRfyMdfw8trn4AQFWz0xiYC",
+        "כד עא": "https://drive.google.com/uc?export=download&id=1h-ZEzi6BhHHotnEKVijheaZ-gWApn44X",
+        "נח": "https://drive.google.com/uc?export=download&id=1hdsCW1jsZQJoDFtnbkbSq1_-a92sxj0T",
+        "נו נז": "https://drive.google.com/uc?export=download&id=1i0W5ib9zwxPAW-qCWzMBSFbrRxSbkYTt",
+        "נג": "https://drive.google.com/uc?export=download&id=1jIB_Lri5TATl9k30OhvtD5Mj83lPm39c",
+        "מו": "https://drive.google.com/uc?export=download&id=1jdrbQmvfN1Up1nlj0_sGJsVtwNfbJJkB",
+        "נט": "https://drive.google.com/uc?export=download&id=1l3WGehHgoNH3dP6bk-zPlrBLLGzCGcju",
+        "יב עא": "https://drive.google.com/uc?export=download&id=1liVBdhubGegwYJ3kKdWVLQ2KDzAWCbZk",
+        "ה": "https://drive.google.com/uc?export=download&id=1nkhhTpQ3Hxn7XbbO1aGK6oos_bckGL1T",
+        "נא": "https://drive.google.com/uc?export=download&id=1nt5Qoinncmfs6i7lLP4K7M8zo_oOxP3k",
+        "יט": "https://drive.google.com/uc?export=download&id=1ohyWat1VNkNRNQ_Gecl57avoZoEiaArd",
+        "ס": "https://drive.google.com/uc?export=download&id=1qyA3YmBOqgG59mp9DODhmNcHPzCBDWSA",
+        "נב": "https://drive.google.com/uc?export=download&id=1rSxUYM8VucKaac39FKhfX5CPmyHW_rbL",
+        "ב ג ברכה למאיר והקדמה על עזרא": "https://drive.google.com/uc?export=download&id=1rWJ6jR5bhxRliD_Ug409QZjmetpGEuIH",
+        "מט": "https://drive.google.com/uc?export=download&id=1u2ai93Wk8vhtvrH9wXQVxXKiyX3QUSVN",
+        "לט עא": "https://drive.google.com/uc?export=download&id=1wCpnvVuc61kYraG0D4xu9MSS1MpAiFGC",
+        "מא עב מב": "https://drive.google.com/uc?export=download&id=1xTU67STvHONKrHjdsTq3k60HDa3USi4u",
+        "ו": "https://drive.google.com/uc?export=download&id=1xYbh9LTkIe0IosqDsLzZIZdOgzVhUzb1",
+        "ח עב ו ט": "https://drive.google.com/uc?export=download&id=1z4KMfpPFRQ8HlLZGM-dBU2iF08ZMr8ni",
+        "לז": "https://drive.google.com/uc?export=download&id=1zJNWppeMQsz8lBniuv3OQ8Resvtpz-bN",
+        "ח השלמה": "https://drive.google.com/uc?export=download&id=1ztPhpoRnOumQD2POxg92mwOL9Sd8xFix"
     };
 
     const dafList = document.getElementById('dafList');
-    const modal = document.getElementById('myModal');
-    const span = document.getElementsByClassName('close')[0];
-    const modalDafTitle = document.getElementById('modalDafTitle');
-    const listenOnline = document.getElementById('listenOnline');
-    const downloadLink = document.getElementById('downloadLink');
 
     // פונקציה להשוואת מספרים עבריים
     function compareHebrewNumbers(a, b) {
@@ -139,32 +140,13 @@
 
     // יצירת כפתורים עבור כל דף במסכת ברכות
     sortedDafim.forEach(daf => {
-        const button = document.createElement('button');
+        const button = document.createElement('a');
         button.textContent = `דף ${daf}`;
         button.className = 'daf-button';
-        button.onclick = function() {
-            openModal(daf);
-        };
+        button.href = mp3Files[daf];
+        button.download = `דף ${daf}.mp3`;
         dafList.appendChild(button);
     });
-
-    function openModal(daf) {
-        modalDafTitle.textContent = `דף ${daf}`;
-        const fileUrl = mp3Files[daf];
-        listenOnline.href = fileUrl;
-        downloadLink.href = fileUrl;
-        modal.style.display = 'block';
-    }
-
-    span.onclick = function() {
-        modal.style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    }
     </script>
 </body>
 </html>
